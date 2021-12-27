@@ -11,7 +11,7 @@ SmartEnums works on the basis of attributes, which means that now it becomes pos
 
 ### Adding fields
 First, let's describe the enumeration we want to work with:
-```
+```csharp
 public enum UserSubscription
 {
   OneMonth,
@@ -20,7 +20,7 @@ public enum UserSubscription
 }
 ```
 Now using attribute `EnumValueAttribute(string key, object value)` adding custom information in enumeration:
-```
+```csharp
 public enum UserSubscription
 {
     [EnumValue("Price", 169.0)]
@@ -44,7 +44,7 @@ Now you add custom fields in enumeration.
 
 
 An attribute can store not only value types, but also more complex structures.
-```
+```csharp
 public enum Gender
 {
     [EnumValue("Description", "he/him")]
@@ -76,7 +76,7 @@ In order to get the value of a custom field, you need to use the extension metho
 `public static T GetValueOf<T>(this Enum element, string key)`
 
 In order not to duplicate the code, let's take the enumeration declared above:
-```
+```csharp
 var age = TemplateUser.Claus.GetValueOf<int>("Age");
 var genderDescription = TemplateUser.Claus.GetValueOf<Gender>("Gender").GetValueOf<string>("Description");
 ```
