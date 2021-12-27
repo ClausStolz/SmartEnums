@@ -1,8 +1,7 @@
 using System;
-using System.Reflection;
 using NUnit.Framework;
 using SmartEnums.Core.Extensions;
-using SmartEnums.Tests.Data;
+using SmartEnums.Tests.Enums;
 
 namespace SmartEnums.Tests
 {

@@ -1,7 +1,6 @@
 using System;
-using System.ComponentModel;
 using System.Linq;
-using SmartEnums.Core.Data;
+using SmartEnums.Attributes;
 
 namespace SmartEnums.Core.Extensions
 {
@@ -23,10 +22,6 @@ namespace SmartEnums.Core.Extensions
             }
             
             return (T)valueOf.Value;
-        }
-        
-        public static T CastObject<T>(this object input) {   
-            return (T) input;   
         }
     }
 }

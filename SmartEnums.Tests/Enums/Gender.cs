@@ -1,6 +1,6 @@
-using SmartEnums.Core.Data;
+using SmartEnums.Attributes;
 
-namespace SmartEnums.Tests.Data
+namespace SmartEnums.Tests.Enums
 {
     public enum Gender
     {
