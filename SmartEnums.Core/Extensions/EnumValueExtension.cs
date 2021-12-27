@@ -7,7 +7,7 @@ namespace SmartEnums.Core.Extensions
 {
     public static class EnumValueExtension
     {
-        public static (Type?, object?) GetValueOf(this Enum element, string key)
+        public static T GetValueOf<T>(this Enum element, string key)
         {
             var enumType = element.GetType();
             var memberValueInfos = enumType.GetMember(element.ToString())
@@ -17,7 +17,16 @@ namespace SmartEnums.Core.Extensions
             var valueOf = (valueAttributes?.FirstOrDefault(x =>
                 (x as EnumValueAttribute)?.Key == key) as EnumValueAttribute);
 
-            return (valueOf?.ValueType, valueOf?.Value);
+            if (valueOf is null)
+            {
+                throw new Exception();
+            }
+            
+            return (T)valueOf.Value;
+        }
+        
+        public static T CastObject<T>(this object input) {   
+            return (T) input;   
         }
     }
 }

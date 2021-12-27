@@ -8,14 +8,11 @@ namespace SmartEnums.Core.Data
     {
         public string Key { get; }
 
-        public Type ValueType { get; }
-        
         public object Value { get; }
 
-        public EnumValueAttribute(string key, Type valueType, object value)
+        public EnumValueAttribute(string key, object value)
         {
             Key = key;
-            ValueType = valueType;
             Value = value;
         }
     }
