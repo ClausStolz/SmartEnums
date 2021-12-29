@@ -4,6 +4,11 @@
 SmartEnums is a simple library, written in C#.NET, which enables you to enhancing the capabilities of standard `enum`.
 
 ## Installation
+Either checkout this Github repository or install SmartEnums via NuGet Package Manager. 
+
+If you want to use NuGet just search for "SmartEnums" or run the following command in the NuGet Package Manager console:
+
+`PM> Install-Package SmartEnums`
 
 ## Usage
 SmartEnums works on the basis of attributes, which means that now it becomes possible to store custom data for enumeration fields without resorting to writing classes.
