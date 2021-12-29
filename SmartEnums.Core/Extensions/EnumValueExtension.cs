@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using SmartEnums.Attributes;
 
-namespace SmartEnums.Core.Extensions
+namespace SmartEnums.Extensions
 {
     public static class EnumValueExtension
     {

@@ -1,11 +1,11 @@
 using System;
 using NUnit.Framework;
-using SmartEnums.Core.Extensions;
+using SmartEnums.Extensions;
 using SmartEnums.Tests.Enums;
 
 namespace SmartEnums.Tests
 {
-    public class Tests
+    public class EnumValueTests
     {
         [SetUp]
         public void Setup()
