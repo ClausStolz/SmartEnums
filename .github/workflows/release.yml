@@ -16,7 +16,7 @@ jobs:
          
     steps:
     - uses: actions/checkout@v2
-    - name: Setup Release
+    - name: Setup V.1.1.1
       uses: actions/setup-dotnet@v1.9.0
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
