@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using SmartEnums.Attributes;
+using SmartEnums.Core.Exceptions;
 
 namespace SmartEnums.Extensions
 {
@@ -18,10 +19,12 @@ namespace SmartEnums.Extensions
 
             if (valueOf is null)
             {
-                throw new Exception();
+                throw new FieldNotImplementException(key, element);
             }
             
-            return (T)valueOf.Value;
+            return valueOf.Value is T value 
+                ? value
+                : throw new WrongEnumValueTypeException(key, typeof(T));
         }
     }
 }

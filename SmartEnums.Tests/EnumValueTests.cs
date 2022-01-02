@@ -7,11 +7,6 @@ namespace SmartEnums.Tests
 {
     public class EnumValueTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         [TestCase(TestEnumValue.Jhon, "Name", "Jhon")]
         [TestCase(TestEnumValue.Claus, "Name", "Claus")]
