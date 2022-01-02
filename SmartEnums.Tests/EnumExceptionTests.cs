@@ -1,7 +1,4 @@
-using System;
 using NUnit.Framework;
-using SmartEnums.Core.Exceptions;
-using SmartEnums.Extensions;
 using SmartEnums.Tests.Enums;
 
 

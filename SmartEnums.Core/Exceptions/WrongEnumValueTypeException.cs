@@ -1,6 +1,6 @@
 using System;
 
-namespace SmartEnums.Core.Exceptions
+namespace SmartEnums
 {
     public class WrongEnumValueTypeException : Exception
     {

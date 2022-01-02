@@ -1,9 +1,8 @@
 using System;
 using System.Linq;
-using SmartEnums.Attributes;
-using SmartEnums.Core.Exceptions;
 
-namespace SmartEnums.Extensions
+
+namespace SmartEnums
 {
     public static class EnumValueExtension
     {

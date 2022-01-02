@@ -1,7 +1,7 @@
 using System;
 
 
-namespace SmartEnums.Attributes
+namespace SmartEnums
 {
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
     public class EnumValueAttribute : Attribute
