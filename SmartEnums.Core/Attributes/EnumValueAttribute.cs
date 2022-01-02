@@ -1,7 +1,7 @@
 using System;
-using System.Collections.Generic;
 
-namespace SmartEnums.Attributes
+
+namespace SmartEnums
 {
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
     public class EnumValueAttribute : Attribute
@@ -9,11 +9,14 @@ namespace SmartEnums.Attributes
         public string Key { get; }
 
         public object Value { get; }
+        
+        public string Version { get; }
 
-        public EnumValueAttribute(string key, object value)
+        public EnumValueAttribute(string key, object value, string version = "latest")
         {
             Key = key;
             Value = value;
+            Version = version;
         }
     }
 }

@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using SmartEnums.Attributes;
 
-namespace SmartEnums.Core.Extensions
+
+namespace SmartEnums
 {
     public static class EnumValueExtension
     {
@@ -13,15 +13,15 @@ namespace SmartEnums.Core.Extensions
                 .FirstOrDefault(x => x.DeclaringType == enumType);
             var valueAttributes = memberValueInfos?.GetCustomAttributes(typeof(EnumValueAttribute), false);
 
-            var valueOf = (valueAttributes?.FirstOrDefault(x =>
-                (x as EnumValueAttribute)?.Key == key) as EnumValueAttribute);
-
-            if (valueOf is null)
+            if (valueAttributes?.FirstOrDefault(x =>
+                (x as EnumValueAttribute)?.Key == key) is not EnumValueAttribute valueOf)
             {
-                throw new Exception();
+                throw new FieldNotImplementException(key, element);
             }
             
-            return (T)valueOf.Value;
+            return valueOf.Value is T value 
+                ? value
+                : throw new WrongEnumValueTypeException(key, typeof(T));
         }
     }
 }

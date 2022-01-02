@@ -1,5 +1,3 @@
-using SmartEnums.Attributes;
-
 namespace SmartEnums.Tests.Enums
 {
     public enum TestEnumValue
