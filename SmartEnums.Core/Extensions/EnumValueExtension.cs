@@ -13,10 +13,8 @@ namespace SmartEnums
                 .FirstOrDefault(x => x.DeclaringType == enumType);
             var valueAttributes = memberValueInfos?.GetCustomAttributes(typeof(EnumValueAttribute), false);
 
-            var valueOf = (valueAttributes?.FirstOrDefault(x =>
-                (x as EnumValueAttribute)?.Key == key) as EnumValueAttribute);
-
-            if (valueOf is null)
+            if (valueAttributes?.FirstOrDefault(x =>
+                (x as EnumValueAttribute)?.Key == key) is not EnumValueAttribute valueOf)
             {
                 throw new FieldNotImplementException(key, element);
             }
