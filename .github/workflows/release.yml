@@ -1,4 +1,4 @@
-name: .NET
+name: Release
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
          
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
+    - name: Setup Release
       uses: actions/setup-dotnet@v1.9.0
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
