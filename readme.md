@@ -1,4 +1,8 @@
 # SmartEnums 
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+[![NuGet Badge](https://buildstats.info/nuget/SmartEnums)](https://www.nuget.org/packages/SmartEnums/)
+[![v1.1.1-stable](https://github.com/ClausStolz/SmartEnums/actions/workflows/master.yml/badge.svg)](https://github.com/ClausStolz/SmartEnums/actions/workflows/master.yml)
+[![v2.0.0](https://github.com/ClausStolz/SmartEnums/actions/workflows/v2.0.0.yml/badge.svg)](https://github.com/ClausStolz/SmartEnums/actions/workflows/v2.0.0.yml)
 
 ## Info
 SmartEnums is a simple library, written in C#.NET, which enables you to enhancing the capabilities of standard `enum`.
