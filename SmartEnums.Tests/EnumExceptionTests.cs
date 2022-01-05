@@ -17,5 +17,11 @@ namespace SmartEnums.Tests
         {
             Assert.Throws<FieldNotImplementException>(() => TestEnumValue.Claus.GetValueOf<string>("Nationality"));
         }
+        
+        [Test]
+        public void TestVersionNotImplementException()
+        {
+            Assert.Throws<VersionNotImplementException>(() => TestEnumValue.Claus.GetValueOf<string>("Age", "2.0.4"));
+        }
     }
 }

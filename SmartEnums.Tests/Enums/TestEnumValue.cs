@@ -1,3 +1,5 @@
+using System;
+
 namespace SmartEnums.Tests.Enums
 {
     public enum TestEnumValue
@@ -7,7 +9,9 @@ namespace SmartEnums.Tests.Enums
         [EnumValue("Gender", Gender.Male)]
         Jhon,
         [EnumValue("Name", "Claus")]
-        [EnumValue("Age", 25)]
+        [EnumValue("Age", 25, "1.0.0")]
+        [EnumValue("Age", 30, "2.0.0")]
+        [EnumValue("Age", 31, "2.0.1")]
         [EnumValue("Gender", Gender.Male)]
         Claus,
         [EnumValue("Name", "Elza")]
