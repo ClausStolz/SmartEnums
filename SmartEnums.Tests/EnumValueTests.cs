@@ -36,6 +36,7 @@ namespace SmartEnums.Tests
         [Test]
         [TestCase(TestEnumValue.Claus, "Age", "1.0.0", 25)]
         [TestCase(TestEnumValue.Claus, "Age", "2.0.0", 30)]
+        [TestCase(TestEnumValue.Claus, "Age", "^1.0.0", 31)]
         [TestCase(TestEnumValue.Claus, "Age", "latest", 31)]
         public void TestVersionedEnumValue(Enum value, string key, string version, int expectedResult)
         {

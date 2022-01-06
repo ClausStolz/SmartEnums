@@ -23,5 +23,11 @@ namespace SmartEnums.Tests
         {
             Assert.Throws<VersionNotImplementException>(() => TestEnumValue.Claus.GetValueOf<string>("Age", "2.0.4"));
         }
+        
+        [Test]
+        public void TestOnlyOlderVersionImplementationException()
+        {
+            Assert.Throws<OnlyOlderVersionImplementationException>(() => TestEnumValue.Claus.GetValueOf<string>("Age", "^3.0.0"));
+        }
     }
 }

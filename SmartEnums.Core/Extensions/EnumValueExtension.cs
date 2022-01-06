@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SmartEnums.Core.Helpers;
 
 
 namespace SmartEnums
@@ -29,12 +30,9 @@ namespace SmartEnums
 
             if (valuesOf is null) throw new FieldNotImplementException(key, element);
 
-            return version switch
-            {
-                null     => throw new NullReferenceException(),
-                "latest" => valuesOf!.MaxBy(x => x?.Version)!.Value.TypeCasting<T>(key),
-                _        => valuesOf!.FindVersion(key, version, element)!.Value.TypeCasting<T>(key),
-            };
+            return version is not null
+                ? valuesOf!.FindVersion(key, version, element)!.Value.TypeCasting<T>(key)
+                : throw new NullReferenceException();
         }
 
         private static IEnumerable<EnumValueAttribute?>? GetEnumValueAttributes(this Enum element)
@@ -50,6 +48,18 @@ namespace SmartEnums
         private static EnumValueAttribute FindVersion(this IEnumerable<EnumValueAttribute> valuesOf, 
             string key, string version, Enum element)
         {
+            if (Config.LatestVersionFlags.Contains(version))
+            {
+                return valuesOf.MaxBy(x => x.Version)!;
+            }
+            
+            if (version[0].Equals(Config.UpVersionFlag))
+            {
+                var valueOf = valuesOf.MaxBy(x => x.Version);
+                return new StringEqualAdapter(valueOf.Version) >= version.Remove(0, 1)
+                    ? valueOf
+                    : throw new OnlyOlderVersionImplementationException(key, version, element);
+            }
             return valuesOf.FirstOrDefault(x => x.Version.Equals(version)) 
                    ?? throw new VersionNotImplementException(key, version, element);
         }
