@@ -10,12 +10,16 @@ namespace SmartEnums
 
         public object Value { get; }
         
-        public string Version { get; }
-
-        public EnumValueAttribute(string key, object value, string version = "latest")
+        public string Version { get; set; }
+        
+        public EnumValueAttribute(string key, object value)
         {
             Key = key;
             Value = value;
+        }
+
+        public EnumValueAttribute(string key, object value, string version) : this(key, value)
+        {
             Version = version;
         }
     }
