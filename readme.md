@@ -1,8 +1,7 @@
 # SmartEnums 
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 [![NuGet Badge](https://buildstats.info/nuget/SmartEnums)](https://www.nuget.org/packages/SmartEnums/)
-[![v1.1.1-stable](https://github.com/ClausStolz/SmartEnums/actions/workflows/master.yml/badge.svg)](https://github.com/ClausStolz/SmartEnums/actions/workflows/master.yml)
-[![v2.0.0](https://github.com/ClausStolz/SmartEnums/actions/workflows/v2.0.0.yml/badge.svg)](https://github.com/ClausStolz/SmartEnums/actions/workflows/v2.0.0.yml)
+[![Lates release](https://github.com/ClausStolz/SmartEnums/actions/workflows/master.yml/badge.svg)](https://github.com/ClausStolz/SmartEnums/actions/workflows/master.yml)
 
 ## Info
 SmartEnums is a simple library, written in C#.NET, which enables you to enhancing the capabilities of standard `enum`.
@@ -10,7 +9,7 @@ SmartEnums is a simple library, written in C#.NET, which enables you to enhancin
 ## Installation
 Either checkout this Github repository or install SmartEnums via NuGet Package Manager. 
 
-If you want to use NuGet just search for "SmartEnums" or run the following command in the NuGet Package Manager console:
+If you want to use NuGet just search for `SmartEnums` or run the following command in the NuGet Package Manager console:
 
 `PM> Install-Package SmartEnums`
 
@@ -28,7 +27,12 @@ public enum UserSubscription
   Year,
 }
 ```
-Now using attribute `EnumValueAttribute(string key, object value)` adding custom information in enumeration:
+Now using attribute 
+```csharp 
+EnumValueAttribute(string key, object value)
+``` 
+adding custom information in enumeration:
+
 ```csharp
 public enum UserSubscription
 {
@@ -52,7 +56,7 @@ public enum UserSubscription
 Now you add custom fields in enumeration.
 
 
-An attribute can store not only value types, but also more complex structures.
+An attribute can store expressions. It's means that you can hold simple value types, `typeof()` expressions and other `enum`.
 ```csharp
 public enum Gender
 {
@@ -82,14 +86,57 @@ public enum TemplateUser
 ### Getting value
 In order to get the value of a custom field, you need to use the extension method 
 
-`public static T GetValueOf<T>(this Enum element, string key)`
+```csharp
+public static T GetValueOf<T>(this Enum element, string key)
+```
 
 In order not to duplicate the code, let's take the enumeration declared above:
 ```csharp
-var age = TemplateUser.Claus.GetValueOf<int>("Age");
-var genderDescription = TemplateUser.Claus.GetValueOf<Gender>("Gender").GetValueOf<string>("Description");
+var age = TemplateUser.Claus.GetValueOf<int>("Age"); //return 25
+var genderDescription = TemplateUser.Claus.GetValueOf<Gender>("Gender").GetValueOf<string>("Description"); //return "he/him"
 ```
 And now you got values of custom attribute fields.
 
+### Attribute versions
+You can add your versions for attributes using same attribute with `string version` parameter
+
+```csharp
+public enum UserSubscription
+{
+    [EnumValue("Price", 169.0, "1.0.0")]
+    [EnumValue("Price", 300.0, "2.0.0")]
+    [EnumValue("Price", 169.0, "2.0.1")]
+    [EnumValue("Price", 300.0, "3.0.0")]
+    OneMonth,
+}
+```
+Versions implemented just as string type and you can make your own versions. But must remember that versions use standard strings comparison.
+
+### Getting versioned value
+In order to get the versioned value of a custom field, you need to use the same extension method like without version but add version parameter
+```csharp
+public static T GetValueOf<T>(this Enum element, string key, string version)
+```
+and get needed versioned value:
+
+```csharp
+var price = UserSubscription.OneMonth.GetValueOf<double>("Price", "1.0.0"); //return 169.0
+```
+Also you can get newest versions using keyword implemented in config class.
+
+There are two keywords for get newest versions:
+```csharp
+"latest",
+"newest"
+```
+
+If you need to get a specific version or newer, you can use the `^` sign at the beginning of the parameter.
+
+With this knowledge, you can get the value for the desired version.
+```csharp
+var priceLatest = UserSubscription.OneMonth.GetValueOf<double>("Price", "latest"); //return 300.0
+var priceNewest = UserSubscription.OneMonth.GetValueOf<double>("Price", "newest"); //return 300.0
+var price = UserSubscription.OneMonth.GetValueOf<double>("Price", "^2.0.0"); //return 300.0
+```
 
 That's all Folks!
