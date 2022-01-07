@@ -139,4 +139,4 @@ var priceNewest = UserSubscription.OneMonth.GetValueOf<double>("Price", "newest"
 var price = UserSubscription.OneMonth.GetValueOf<double>("Price", "^2.0.0"); //return 300.0
 ```
 
-That's all Folks!
+### That's all Folks!
