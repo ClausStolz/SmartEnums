@@ -1,4 +1,5 @@
 using System;
+using SmartEnums.Core.Helpers;
 
 
 namespace SmartEnums
@@ -16,6 +17,7 @@ namespace SmartEnums
         {
             Key = key;
             Value = value;
+            Version = Config.DefaultVersion;
         }
 
         public EnumValueAttribute(string key, object value, string version) : this(key, value)

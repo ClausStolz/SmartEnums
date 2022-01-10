@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using SmartEnums.Tests.Enums;
 
@@ -28,6 +29,12 @@ namespace SmartEnums.Tests
         public void TestOnlyOlderVersionImplementationException()
         {
             Assert.Throws<OnlyOlderVersionImplementationException>(() => TestEnumValue.Claus.GetValueOf<string>("Age", "^3.0.0"));
+        }
+
+        [Test]
+        public void TestNullReferenceException()
+        {
+            Assert.DoesNotThrow(() => TestEnumValue.Claus.GetValueOf<string>("Name", "1.0.0"));
         }
     }
 }
