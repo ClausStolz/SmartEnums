@@ -6,7 +6,7 @@ using SmartEnums.Core.Helpers;
 
 namespace SmartEnums
 {
-    public static class EnumValueExtension
+    public static partial class EnumValueExtension
     {
         public static T GetValueOf<T>(this Enum element, string key)
         {
@@ -37,16 +37,6 @@ namespace SmartEnums
                 : throw new NullReferenceException();
         }
 
-        private static IEnumerable<EnumValueAttribute?>? GetEnumValueAttributes(this Enum element)
-        {
-            var enumType = element.GetType();
-            var memberValueInfos = enumType.GetMember(element.ToString())
-                .FirstOrDefault(x => x.DeclaringType == enumType);
-
-            return memberValueInfos?.GetCustomAttributes(typeof(EnumValueAttribute), false)
-                .Select(input => input as EnumValueAttribute);
-        }
-        
         private static EnumValueAttribute FindVersion(this IEnumerable<EnumValueAttribute> valuesOf, 
             string key, string version, Enum element)
         {

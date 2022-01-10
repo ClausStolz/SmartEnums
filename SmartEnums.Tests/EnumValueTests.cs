@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using SmartEnums.Tests.Enums;
 
@@ -41,6 +44,16 @@ namespace SmartEnums.Tests
         public void TestVersionedEnumValue(Enum value, string key, string version, int expectedResult)
         {
             Assert.AreEqual(expectedResult, value.GetValueOf<int>(key, version));
+        }
+
+        [Test]
+        [TestCase(TestEnumValue.Claus, 5)]
+        [TestCase(TestEnumValue.Jhon, 3)]
+        [TestCase(TestEnumValue.Elza, 3)]
+        public void TestEnumValueJsonMetadata(Enum value, int expectedResult)
+        {
+            var deserialize = System.Text.Json.JsonSerializer.Deserialize<IEnumerable<object>>(value.GetJsonMetadata());
+            if (deserialize != null) Assert.AreEqual(expectedResult, deserialize.Count());
         }
     }
 }
