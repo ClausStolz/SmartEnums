@@ -12,7 +12,9 @@ namespace SmartEnums
         {
             var valueAttributes = element.GetEnumValueAttributes();
 
-            var valueOf = valueAttributes?.FirstOrDefault(x => (x?.Key == key));
+            var valueOf = valueAttributes?
+                .Where(x => x?.Key == key)
+                .MaxBy(x => x?.Version);
 
             return valueOf is not null
                 ? valueOf.Value.TypeCasting<T>(key)

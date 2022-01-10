@@ -17,7 +17,7 @@ namespace SmartEnums.Tests
         
         [Test]
         [TestCase(TestEnumValue.Jhon, "Age", 20)]
-        [TestCase(TestEnumValue.Claus, "Age", 25)]
+        [TestCase(TestEnumValue.Claus, "Age", 31)]
         [TestCase(TestEnumValue.Elza, "Age", 15)]
         public void TestEnumValueInt(Enum value, string key, int expectedResult)
         {
