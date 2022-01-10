@@ -2,11 +2,13 @@ namespace SmartEnums.Core.Helpers
 {
     public static class Config
     {
-        public static string[] LatestVersionFlags = new []
+        public static readonly string[] LatestVersionFlags = new []
         {
             "latest", "newest"
         };
 
-        public static char UpVersionFlag = '^';
+        public const char UpVersionFlag = '^';
+
+        public const string DefaultVersion = "1.0.0";
     }
 }
