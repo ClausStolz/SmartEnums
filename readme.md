@@ -3,21 +3,27 @@
 [![NuGet Badge](https://buildstats.info/nuget/SmartEnums)](https://www.nuget.org/packages/SmartEnums/)
 [![Lates release](https://github.com/ClausStolz/SmartEnums/actions/workflows/master.yml/badge.svg)](https://github.com/ClausStolz/SmartEnums/actions/workflows/master.yml)
 
-## Info
+# Info
 SmartEnums is a simple library, written in C#.NET, which enables you to enhancing the capabilities of standard `enum`.
 
-## Installation
+# Installation
 Either checkout this Github repository or install SmartEnums via NuGet Package Manager. 
 
 If you want to use NuGet just search for `SmartEnums` or run the following command in the NuGet Package Manager console:
 
 `PM> Install-Package SmartEnums`
 
-## Usage
+# Usage
 SmartEnums works on the basis of attributes, which means that now it becomes possible to store custom data for enumeration fields without resorting to writing classes.
 
+- [Adding fields](#adding-fields)
+- [Getting value](#getting-value)
+- [Attribute versions](#attribute-versions)
+- [Getting versioned value](#getting-versioned-value)
+- [Enumeration](#enumeration)
+- [Metadata](#metadata)
 
-### Adding fields
+# Adding fields
 First, let's describe the enumeration we want to work with:
 ```csharp
 public enum UserSubscription
@@ -83,7 +89,7 @@ public enum TemplateUser
 }
 ```
 
-### Getting value
+# Getting value
 In order to get the value of a custom field, you need to use the extension method 
 
 ```csharp
@@ -97,7 +103,7 @@ var genderDescription = TemplateUser.Claus.GetValueOf<Gender>("Gender").GetValue
 ```
 And now you got values of custom attribute fields.
 
-### Attribute versions
+# Attribute versions
 You can add your versions for attributes using same attribute with `string version` parameter
 
 ```csharp
@@ -112,7 +118,7 @@ public enum UserSubscription
 ```
 Versions implemented just as string type and you can make your own versions. But must remember that versions use standard strings comparison.
 
-### Getting versioned value
+# Getting versioned value
 In order to get the versioned value of a custom field, you need to use the same extension method like without version but add version parameter
 ```csharp
 public static T GetValueOf<T>(this Enum element, string key, string version)
@@ -122,6 +128,8 @@ and get needed versioned value:
 ```csharp
 var price = UserSubscription.OneMonth.GetValueOf<double>("Price", "1.0.0"); //return 169.0
 ```
+If you use method `GetValueOf<T>` without version for field that has some versions it return value of newest version.
+
 Also you can get newest versions using keyword implemented in config class.
 
 There are two keywords for get newest versions:
@@ -137,6 +145,34 @@ With this knowledge, you can get the value for the desired version.
 var priceLatest = UserSubscription.OneMonth.GetValueOf<double>("Price", "latest"); //return 300.0
 var priceNewest = UserSubscription.OneMonth.GetValueOf<double>("Price", "newest"); //return 300.0
 var price = UserSubscription.OneMonth.GetValueOf<double>("Price", "^2.0.0"); //return 300.0
+```
+# Some more good features
+## Enumeration
+By default, C# does not have an enumeration for enums. I suggest this big omission and added a method that implements this functionality.
+
+```csharp
+public static IEnumerable<T> GetEnumerator<T>()
+
+//example
+public enum Gender
+{
+  Male,
+  Female
+}
+
+var genders = SmartEnum.GetEnumerator<Gender>(); //return IEnumerable<Gender> [Male, Female]
+```
+## Metadata
+Sometimes need get full information about used `EnumValueAttribute` in enum. For this situations you can get metadata of enum serialized to json or xml:
+
+For get metadata in json format use next extension method:
+```csharp
+public static string GetJsonMetadata(this Enum obj) 
+```
+
+For get metadata in xml format use next extansion method:
+```csharp
+public static string GetXmlMetadata(this Enum obj)
 ```
 
 ### That's all Folks!
