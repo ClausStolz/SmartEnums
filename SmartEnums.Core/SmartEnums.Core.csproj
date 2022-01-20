@@ -6,16 +6,16 @@
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>SmartEnums</PackageId>
-        <PackageVersion>2.1.0</PackageVersion>
+        <PackageVersion>2.1.1</PackageVersion>
         <Authors>clausstolz</Authors>
         <Description>SmartEnums is a simple library, written in C#.NET which enables you to enhancing the capabilities of standard enums</Description>
         <Copyright>(c) Claus Stolz 2022</Copyright>
         <PackageProjectUrl>https://github.com/ClausStolz/SmartEnums</PackageProjectUrl>
         <RepositoryUrl>https://github.com/ClausStolz/SmartEnums</RepositoryUrl>
         <PackageTags>smart enum enums smartenum smartenums</PackageTags>
-        <PackageReleaseNotes>Added the ability to create attributes with your own specific versions;
-Improved error handling;
-Support for getting later versions of attributes has been implemented.</PackageReleaseNotes>
+        <PackageReleaseNotes>Improved null error handling;
+Support enumeration for enums;
+Support getting json metadata of enums value fields.</PackageReleaseNotes>
         <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
     </PropertyGroup>
 
