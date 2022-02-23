@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
+// ReSharper disable once CheckNamespace
 namespace SmartEnums
 {
     public static partial class EnumValueExtension

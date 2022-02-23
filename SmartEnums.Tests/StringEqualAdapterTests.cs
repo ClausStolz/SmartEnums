@@ -1,6 +1,6 @@
 using System;
 using NUnit.Framework;
-using SmartEnums.Core.Helpers;
+using SmartEnums.Helpers;
 using SmartEnums.Tests.Enums;
 
 namespace SmartEnums.Tests

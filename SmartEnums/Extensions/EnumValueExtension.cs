@@ -1,10 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SmartEnums.Core.Helpers;
+using SmartEnums.Helpers;
 
+// ReSharper disable once CheckNamespace
 namespace SmartEnums
 {
+    /// <summary>
+    /// Extension implemented main functional for searching value by key
+    /// in metadata fields.
+    /// </summary>
     public static partial class EnumValueExtension
     {
         /// <summary>

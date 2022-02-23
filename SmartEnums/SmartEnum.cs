@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
+// ReSharper disable once CheckNamespace
 namespace SmartEnums
 {
+    /// <summary>
+    /// Helper static class contain optional functional for enums.
+    /// </summary>
     public static class SmartEnum
     {
         /// <summary>
