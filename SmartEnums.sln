@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartEnums.Core", "SmartEnums.Core\SmartEnums.Core.csproj", "{7EDA28B4-234D-485E-ACD8-A38B5EA2A6FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartEnums", "SmartEnums\SmartEnums.csproj", "{7EDA28B4-234D-485E-ACD8-A38B5EA2A6FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartEnums.Tests", "SmartEnums.Tests\SmartEnums.Tests.csproj", "{FE8BDB2A-121D-4DD4-AF3E-FABB4F767A8B}"
 EndProject

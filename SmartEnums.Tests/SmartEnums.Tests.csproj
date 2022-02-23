@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SmartEnums.Core\SmartEnums.Core.csproj" />
+      <ProjectReference Include="..\SmartEnums\SmartEnums.csproj" />
     </ItemGroup>
 
 </Project>

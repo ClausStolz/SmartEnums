@@ -1,0 +1,12 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=299c3d44_002D2e91_002D44ba_002D8a40_002Da5f6c9e10f04/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestVersionedEnumValue #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/clausstolz/code/SmartEnums/SmartEnums.Tests" Presentation="&amp;lt;SmartEnums.Tests&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2b8b9dcf_002D13fb_002D4750_002D99b2_002D0a73fe306ef2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestVersionedEnumValue" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::FE8BDB2A-121D-4DD4-AF3E-FABB4F767A8B::net6.0::SmartEnums.Tests.EnumValueTests.TestVersionedEnumValue&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5d32dcde_002D23be_002D41a5_002Da31c_002De77498f66562/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestWrongEnumValueTypeException" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/clausstolz/code/SmartEnums/SmartEnums.Tests" Presentation="&amp;lt;SmartEnums.Tests&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
