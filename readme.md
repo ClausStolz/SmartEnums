@@ -20,10 +20,14 @@ SmartEnums works on the basis of attributes, which means that now it becomes pos
 - [Getting value](#getting-value)
 - [Attribute versions](#attribute-versions)
 - [Getting versioned value](#getting-versioned-value)
+- [Adding tags](#adding-tags-attributes)
+- [Getting tags](#getting-tags)
+- [Searching via tags](#searching-via-tags)
+- [Searching excluding tags](#searching-excluding-tags)
 - [Enumeration](#enumeration)
 - [Metadata](#metadata)
 
-# Adding fields
+# Adding enum value attributes
 First, let's describe the enumeration we want to work with:
 ```csharp
 public enum UserSubscription
@@ -146,8 +150,108 @@ var priceLatest = UserSubscription.OneMonth.GetValueOf<double>("Price", "latest"
 var priceNewest = UserSubscription.OneMonth.GetValueOf<double>("Price", "newest"); //return 300.0
 var price = UserSubscription.OneMonth.GetValueOf<double>("Price", "^2.0.0"); //return 300.0
 ```
-# Some more good features
-## Enumeration
+
+# Adding tags attributes
+In SmartEnums also provides work with tags. It's very useful when you need to mark certain elements of an enum with certain values. As an example, I mark items that are deprecated or that are used only in the release/debug version.
+
+Again, let's describe the enumeration we want to work with:
+```csharp
+public enum UserSubscription
+{
+  OneMonth,
+  SixMonth, 
+  Year,
+  TwoYears,
+}
+```
+Now using attribute 
+```csharp 
+EnumTagAttribute(string value)
+``` 
+adding custom tag in enumeration:
+
+```csharp
+public enum UserSubscription
+{
+    [EnumTag("new users")]
+    OneMonth,
+    
+    [EnumTag("new users")]
+    SixMonth, 
+    
+    [EnumTag("deprecated")]
+    Year,
+    
+    [EnumTag("new users")]
+    [EnumTag("test")]
+    TwoYears
+}
+```
+Now you add custom tags in enumeration.
+
+# Getting tags
+In order to get tags of an enum element, you need to use the extension method 
+
+```csharp
+public static IEnumerable<string>? GetEnumTags(this Enum obj)
+```
+
+Let's take the enumeration declared above:
+```csharp
+var tags = UserSubscription.TwoYears.GetEnumTags(); //return { "new users", "test" }
+```
+
+# Searching via tags
+For searching via tags in enum you need to use helper class `SmartEnum`. It contain overloaded method to search elements in enum whith certain tags.
+
+```csharp
+public static IEnumerable<T> FindByTag<T>(string tag)
+public static IEnumerable<T> FindByTag<T>(IEnumerable<string> tags, TagSearchingFlag flag = TagSearchingFlag.Any)
+```
+
+Need to make note to flag parameter. `TagSearchFlag` has two implemented values:
+
+```csharp
+public enum TagSearchingFlag
+    {
+        /// <summary>
+        /// Indicated to need to search elements where any
+        /// tags is match with searching tags list.
+        /// </summary>
+        Any,
+        /// <summary>
+        /// Indicated to need to search elements where all
+        /// tags is match with searching tags list.
+        /// </summary>
+        All,
+    }
+```
+
+Using this flag, as you might guess from the description, you can explain how exactly searching using tags:
+
+```csharp
+var elements = SmartEnum.FindByTag<TestEnumTag>("new users"); // return { OneMonth, SixMonth, TwoYears }
+var elements = SmartEnum.FindByTag<TestEnumTag>(new [] { "new users", "deprecated", "test" }, TagSearchingFlag.Any); // return null
+var elements = SmartEnum.FindByTag<TestEnumTag>(new [] { "new users", "test" }, TagSearchingFlag.All); // return { OneMonth, SixMonth, Year }
+```
+
+# Searching excluding tags
+Sometimes need to searching excluding certain tags. For this situatuion `SmartEnum` contain overloaded method to search elements that excluding certain tags.
+
+```csharp
+public static IEnumerable<T> FindExcludingByTag<T>(string tag)
+public static IEnumerable<T> FindExcludingByTag<T>(IEnumerable<string> tags, TagSearchingFlag flag = TagSearchingFlag.Any)
+```
+
+This works inversely to the overloaded method described above and next code explain it:
+```csharp
+var elements = SmartEnum.FindExcludingByTag<TestEnumTag>("new users"); // return { Year }
+var elements = SmartEnum.FindExcludingByTag<TestEnumTag>(new [] { "new users", "test" }, TagSearchingFlag.Any); // return { OneMonth, SixMonth, TwoYears }
+var elements = SmartEnum.FindExcludingByTag<TestEnumTag>(new [] { "new users", "test" }, TagSearchingFlag.All); // return { TwoYears }
+
+```
+
+# Enumeration
 By default, C# does not have an enumeration for enums. I suggest this big omission and added a method that implements this functionality.
 
 ```csharp
@@ -162,7 +266,7 @@ public enum Gender
 
 var genders = SmartEnum.GetEnumerator<Gender>(); //return IEnumerable<Gender> [Male, Female]
 ```
-## Metadata
+# Metadata
 Sometimes need get full information about used `EnumValueAttribute` in enum. For this situations you can get metadata of enum serialized to json or xml:
 
 For get metadata in json format use next extension method:
