@@ -16,14 +16,17 @@ If you want to use NuGet just search for `SmartEnums` or run the following comma
 # Usage
 SmartEnums works on the basis of attributes, which means that now it becomes possible to store custom data for enumeration fields without resorting to writing classes.
 
+### Enum Values:
 - [Adding fields](#adding-fields)
 - [Getting value](#getting-value)
 - [Attribute versions](#attribute-versions)
 - [Getting versioned value](#getting-versioned-value)
+### Enum Tags:
 - [Adding tags](#adding-tags-attributes)
 - [Getting tags](#getting-tags)
 - [Searching via tags](#searching-via-tags)
 - [Searching excluding tags](#searching-excluding-tags)
+### More useful features
 - [Enumeration](#enumeration)
 - [Metadata](#metadata)
 
