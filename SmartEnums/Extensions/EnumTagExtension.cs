@@ -2,14 +2,15 @@
 namespace SmartEnums
 {
     /// <summary>
-    /// 
+    /// Extension implemented functional for getting tags
+    /// in enum element.
     /// </summary>
     public static class EnumTagExtension
     {
         /// <summary>
-        /// 
+        /// Return tags for certain enum element. 
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="obj">Enum element that tags need to receive.</param>
         /// <returns></returns>
         public static IEnumerable<string>? GetEnumTags(this Enum obj)
         {

@@ -9,16 +9,14 @@ namespace SmartEnums
         /// <summary>
         /// Return enumeration by enum type. 
         /// </summary>
-        /// <typeparam name="T">Enum type that need to enumerate</typeparam>
-        /// <returns></returns>
+        /// <typeparam name="T">Enum type that need to enumerate.</typeparam>
         public static IEnumerable<T> GetEnumerator<T>() => Enum.GetValues(typeof(T)).Cast<T>();
         
         /// <summary>
-        /// 
+        /// Searching elements in enum that have certain tag.
         /// </summary>
-        /// <param name="tag"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="tag">Single searching tag.</param>
+        /// <typeparam name="T">Enum type where search elements.</typeparam>
         public static IEnumerable<T> FindByTag<T>(string tag)
         {
             var elements = GetEnumerator<T>();
@@ -26,12 +24,11 @@ namespace SmartEnums
         }
 
         /// <summary>
-        /// 
+        /// Searching elements in enum that have certain tags.
         /// </summary>
-        /// <param name="tags"></param>
-        /// <param name="flag"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="tags">Searching tags list.</param>
+        /// <param name="flag">Flag indicates how need to search via tags.</param>
+        /// <typeparam name="T">Enum type where search elements.</typeparam>
         public static IEnumerable<T> FindByTag<T>(IEnumerable<string> tags, TagSearchingFlag flag = TagSearchingFlag.Any)
         {
             var elements = GetEnumerator<T>();
@@ -49,11 +46,10 @@ namespace SmartEnums
         }
         
         /// <summary>
-        /// 
+        /// Searching elements in enum that have not certain tag.
         /// </summary>
-        /// <param name="tag"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="tag">Single excluding tag.</param>
+        /// <typeparam name="T">Enum type where search elements.</typeparam>
         public static IEnumerable<T> FindExcludingByTag<T>(string tag)
         {
             var elements = GetEnumerator<T>();
@@ -61,11 +57,11 @@ namespace SmartEnums
         }
         
         /// <summary>
-        /// 
+        /// Searching elements in enum that have not certain tags.
         /// </summary>
-        /// <param name="tags"></param>
-        /// <param name="flag"></param>
-        /// <typeparam name="T"></typeparam>
+        /// <param name="tags">Excluding tags list.</param>
+        /// <param name="flag">Flag indicates how need to search via tags.</param>
+        /// <typeparam name="T">Enum type where search elements.</typeparam>
         /// <returns></returns>
         public static IEnumerable<T> FindExcludingByTag<T>(IEnumerable<string> tags, TagSearchingFlag flag = TagSearchingFlag.Any)
         {
@@ -75,8 +71,8 @@ namespace SmartEnums
                 var elementTags = (x as Enum)!.GetEnumTags() ?? Array.Empty<string>();
                 return flag switch
                 {
-                    TagSearchingFlag.All => !tags.All(elementTags.Contains), // elementTags.All(tags.Contains),
-                    TagSearchingFlag.Any => !tags.Any(elementTags.Contains), //elementTags.Any(tags.Contains),
+                    TagSearchingFlag.All => !tags.All(elementTags.Contains),
+                    TagSearchingFlag.Any => !tags.Any(elementTags.Contains),
                     _ => throw new ArgumentOutOfRangeException(nameof(flag), flag, null)
                 };
             });
