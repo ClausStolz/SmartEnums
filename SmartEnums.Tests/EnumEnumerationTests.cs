@@ -10,7 +10,7 @@ namespace SmartEnums.Tests
     public class EnumEnumerationTests
     {
         [Test]
-        [TestCase(new[] {Gender.Male, Gender.Female})]
+        [TestCase(new[] { Gender.Male, Gender.Female })]
         public void TestEnumEnumeration(Gender[] expectedResult)
         {
             foreach (var element in SmartEnum.GetEnumerator<Gender>())
