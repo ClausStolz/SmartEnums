@@ -6,18 +6,19 @@
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>SmartEnums</PackageId>
-        <PackageVersion>3.0.0</PackageVersion>
+        <PackageVersion>3.0.1</PackageVersion>
         <Authors>clausstolz</Authors>
         <Description>SmartEnums is a simple library, written in C#.NET which enables you to enhancing the capabilities of standard enums</Description>
         <Copyright>(c) Claus Stolz 2022</Copyright>
         <PackageProjectUrl>https://github.com/ClausStolz/SmartEnums</PackageProjectUrl>
         <RepositoryUrl>https://github.com/ClausStolz/SmartEnums</RepositoryUrl>
         <PackageTags>smart enum enums smartenum smartenums</PackageTags>
-        <PackageReleaseNotes>Added tags;
-Added functionality for searching tags in enum.</PackageReleaseNotes>
+        <PackageReleaseNotes>Minor fixes;
+Added method to convert string to enum.</PackageReleaseNotes>
         <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
         <Product>SmartEnums</Product>
         <RootNamespace>SmartEnums.Core</RootNamespace>
+        <Title>SmartEnums</Title>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

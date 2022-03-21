@@ -1,6 +1,6 @@
 namespace SmartEnums.Tests.Enums;
 
-public enum TestEnumTag
+public enum EnumTag
 {
     [EnumTag("test")]
     [EnumTag("predicate")]

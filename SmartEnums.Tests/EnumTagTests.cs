@@ -8,9 +8,9 @@ namespace SmartEnums.Tests;
 public class EnumTagTests
 {
     [Test]
-    [TestCase(TestEnumTag.First, new[] { "test", "predicate" })]
-    [TestCase(TestEnumTag.Second, new[] { "test" })]
-    [TestCase(TestEnumTag.Third, null)]
+    [TestCase(EnumTag.First, new[] { "test", "predicate" })]
+    [TestCase(EnumTag.Second, new[] { "test" })]
+    [TestCase(EnumTag.Third, null)]
     public void TestGetEnumTags(Enum obj, string[] expectedResult)
     {
         foreach (var element in obj.GetEnumTags()!)
@@ -20,72 +20,72 @@ public class EnumTagTests
     }
     
     [Test]
-    [TestCase("test", new[] { TestEnumTag.First, TestEnumTag.Second })]
-    [TestCase("predicate", new[] { TestEnumTag.First })]
+    [TestCase("test", new[] { EnumTag.First, EnumTag.Second })]
+    [TestCase("predicate", new[] { EnumTag.First })]
     [TestCase("undefined", null)]
-    public void TestFindBySingleTag(string tag, TestEnumTag[] expectedResult)
+    public void TestFindBySingleTag(string tag, EnumTag[] expectedResult)
     {
-        foreach (var element in SmartEnum.FindByTag<TestEnumTag>(tag))
+        foreach (var element in SmartEnum.FindByTag<EnumTag>(tag))
         {
             Assert.True(expectedResult.Contains(element));
         }
     }
     
     [Test]
-    [TestCase(new[] { "test" }, new[] { TestEnumTag.First, TestEnumTag.Second })]
-    [TestCase(new[] { "test", "predicate" }, new[] { TestEnumTag.First })]
+    [TestCase(new[] { "test" }, new[] { EnumTag.First, EnumTag.Second })]
+    [TestCase(new[] { "test", "predicate" }, new[] { EnumTag.First })]
     [TestCase(new[] { "test", "undefined" }, null)]
-    public void TestFindByAllTags(string[] tags, TestEnumTag[] expectedResult)
+    public void TestFindByAllTags(string[] tags, EnumTag[] expectedResult)
     {
-        foreach (var element in SmartEnum.FindByTag<TestEnumTag>(tags, TagSearchingFlag.All))
+        foreach (var element in SmartEnum.FindByTag<EnumTag>(tags, TagSearchingFlag.All))
         {
             Assert.True(expectedResult.Contains(element));
         }
     }
     
     [Test]
-    [TestCase(new[] { "test" }, new[] { TestEnumTag.First, TestEnumTag.Second })]
-    [TestCase(new[] { "test", "predicate" }, new[] { TestEnumTag.First, TestEnumTag.Second })]
-    [TestCase(new[] { "test", "undefined" }, new[] { TestEnumTag.First, TestEnumTag.Second })]
-    public void TestFindByAnyTags(string[] tags, TestEnumTag[] expectedResult)
+    [TestCase(new[] { "test" }, new[] { EnumTag.First, EnumTag.Second })]
+    [TestCase(new[] { "test", "predicate" }, new[] { EnumTag.First, EnumTag.Second })]
+    [TestCase(new[] { "test", "undefined" }, new[] { EnumTag.First, EnumTag.Second })]
+    public void TestFindByAnyTags(string[] tags, EnumTag[] expectedResult)
     {
-        foreach (var element in SmartEnum.FindByTag<TestEnumTag>(tags, TagSearchingFlag.All))
+        foreach (var element in SmartEnum.FindByTag<EnumTag>(tags, TagSearchingFlag.All))
         {
             Assert.True(expectedResult.Contains(element));
         }
     }
     
     [Test]
-    [TestCase("test", new[] { TestEnumTag.Third })]
-    [TestCase("predicate", new[] { TestEnumTag.Second, TestEnumTag.Third })]
-    [TestCase("undefined", new[] { TestEnumTag.First, TestEnumTag.Second, TestEnumTag.Third })]
-    public void TestFindExcludingBySingleTag(string tag, TestEnumTag[] expectedResult)
+    [TestCase("test", new[] { EnumTag.Third })]
+    [TestCase("predicate", new[] { EnumTag.Second, EnumTag.Third })]
+    [TestCase("undefined", new[] { EnumTag.First, EnumTag.Second, EnumTag.Third })]
+    public void TestFindExcludingBySingleTag(string tag, EnumTag[] expectedResult)
     {
-        foreach (var element in SmartEnum.FindExcludingByTag<TestEnumTag>(tag))
+        foreach (var element in SmartEnum.FindExcludingByTag<EnumTag>(tag))
         {
             Assert.True(expectedResult.Contains(element));
         }
     }
     
     [Test]
-    [TestCase(new[] { "test" }, new[] { TestEnumTag.Third })]
-    [TestCase(new[] { "test", "predicate" }, new[] { TestEnumTag.Second, TestEnumTag.Third })]
-    [TestCase(new[] { "test", "undefined" }, new[] { TestEnumTag.First, TestEnumTag.Second, TestEnumTag.Third })]
-    public void TestFindExcludingByAllTags(string[] tags, TestEnumTag[] expectedResult)
+    [TestCase(new[] { "test" }, new[] { EnumTag.Third })]
+    [TestCase(new[] { "test", "predicate" }, new[] { EnumTag.Second, EnumTag.Third })]
+    [TestCase(new[] { "test", "undefined" }, new[] { EnumTag.First, EnumTag.Second, EnumTag.Third })]
+    public void TestFindExcludingByAllTags(string[] tags, EnumTag[] expectedResult)
     {
-        foreach (var element in SmartEnum.FindExcludingByTag<TestEnumTag>(tags, TagSearchingFlag.All))
+        foreach (var element in SmartEnum.FindExcludingByTag<EnumTag>(tags, TagSearchingFlag.All))
         {
             Assert.True(expectedResult.Contains(element));
         }
     }
     
     [Test]
-    [TestCase(new[] { "test" }, new[] { TestEnumTag.Third })]
-    [TestCase(new[] { "test", "predicate" }, new[] { TestEnumTag.Third })]
-    [TestCase(new[] { "predicate", "undefined" }, new[] { TestEnumTag.Second, TestEnumTag.Third })]
-    public void TestFindExcludingByAnyTags(string[] tags, TestEnumTag[] expectedResult)
+    [TestCase(new[] { "test" }, new[] { EnumTag.Third })]
+    [TestCase(new[] { "test", "predicate" }, new[] { EnumTag.Third })]
+    [TestCase(new[] { "predicate", "undefined" }, new[] { EnumTag.Second, EnumTag.Third })]
+    public void TestFindExcludingByAnyTags(string[] tags, EnumTag[] expectedResult)
     {
-        foreach (var element in SmartEnum.FindExcludingByTag<TestEnumTag>(tags, TagSearchingFlag.Any))
+        foreach (var element in SmartEnum.FindExcludingByTag<EnumTag>(tags, TagSearchingFlag.Any))
         {
             Assert.True(expectedResult.Contains(element));
         }

@@ -2,12 +2,12 @@ using System;
 
 namespace SmartEnums.Tests.Enums
 {
-    public enum TestEnumValue
+    public enum EnumValue
     {
-        [EnumValue("Name", "Jhon")]
+        [EnumValue("Name", "John")]
         [EnumValue("Age", 20)]
         [EnumValue("Gender", Gender.Male)]
-        Jhon,
+        John,
         [EnumValue("Name", "Claus")]
         [EnumValue("Age", 25, "1.0.0")]
         [EnumValue("Age", 30, "2.0.0")]

@@ -1,10 +1,9 @@
-namespace SmartEnums.Tests.Enums
+namespace SmartEnums.Tests.Enums;
+
+public enum Gender
 {
-    public enum Gender
-    {
-        [EnumValue("Description", "he/him")]
-        Male,
-        [EnumValue("Description", "she/her")]
-        Female,
-    }
+    [EnumValue("Description", "he/him")]
+    Male,
+    [EnumValue("Description", "she/her")]
+    Female,
 }
