@@ -233,14 +233,14 @@ public enum TagSearchingFlag
 Using this flag, as you might guess from the description, you can explain how exactly searching using tags:
 
 ```csharp
-var elements = SmartEnum.FindByTag<TestEnumTag>("new users"); // return { OneMonth, SixMonth, TwoYears }
-var elements = SmartEnum.FindByTag<TestEnumTag>(new [] { "new users", "deprecated", "test" }, TagSearchingFlag.Any); // return null
-var elements = SmartEnum.FindByTag<TestEnumTag>(new [] { "new users", "test" }, TagSearchingFlag.All); // return { OneMonth, SixMonth, Year }
+var elements = SmartEnum.FindByTag<UserSubscription>("new users"); // return { OneMonth, SixMonth, TwoYears }
+var elements = SmartEnum.FindByTag<UserSubscription>(new [] { "new users", "deprecated", "test" }, TagSearchingFlag.Any); // return { OneMonth, SixMonth, Year, TwoYears }
+var elements = SmartEnum.FindByTag<UserSubscription>(new [] { "new users", "test" }, TagSearchingFlag.All); // return { TwoYears }
 ```
 
 # Searching excluding tags
 Sometimes need to searching excluding certain tags. For this situatuion `SmartEnum` contain overloaded method to search elements that excluding certain tags.
-
+    
 ```csharp
 public static IEnumerable<T> FindExcludingByTag<T>(string tag)
 public static IEnumerable<T> FindExcludingByTag<T>(IEnumerable<string> tags, TagSearchingFlag flag = TagSearchingFlag.Any)
@@ -249,8 +249,8 @@ public static IEnumerable<T> FindExcludingByTag<T>(IEnumerable<string> tags, Tag
 This works inversely to the overloaded method described above and next code explain it:
 ```csharp
 var elements = SmartEnum.FindExcludingByTag<TestEnumTag>("new users"); // return { Year }
-var elements = SmartEnum.FindExcludingByTag<TestEnumTag>(new [] { "new users", "test" }, TagSearchingFlag.Any); // return { OneMonth, SixMonth, TwoYears }
-var elements = SmartEnum.FindExcludingByTag<TestEnumTag>(new [] { "new users", "test" }, TagSearchingFlag.All); // return { TwoYears }
+var elements = SmartEnum.FindExcludingByTag<TestEnumTag>(new [] { "new users", "test" }, TagSearchingFlag.Any); // return { Year }
+var elements = SmartEnum.FindExcludingByTag<TestEnumTag>(new [] { "new users", "test" }, TagSearchingFlag.All); // return { OneMonth, SixMonth, Year }
 
 ```
 
