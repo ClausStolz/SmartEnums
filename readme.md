@@ -19,6 +19,7 @@ SmartEnums works on the basis of attributes, which means that now it becomes pos
 ### Enum Values:
 - [Adding fields](#adding-fields)
 - [Getting value](#getting-value)
+- [Searching enum elements](#searching-enum-elements-via-enum-value)
 - [Attribute versions](#attribute-versions)
 - [Getting versioned value](#getting-versioned-value)
 ### Enum Tags:
@@ -30,7 +31,7 @@ SmartEnums works on the basis of attributes, which means that now it becomes pos
 - [Enumeration](#enumeration)
 - [Metadata](#metadata)
 
-# Adding enum value attributes
+# Adding fields
 First, let's describe the enumeration we want to work with:
 ```csharp
 public enum UserSubscription
@@ -109,6 +110,32 @@ var age = TemplateUser.Claus.GetValueOf<int>("Age"); //return 25
 var genderDescription = TemplateUser.Claus.GetValueOf<Gender>("Gender").GetValueOf<string>("Description"); //return "he/him"
 ```
 And now you got values of custom attribute fields.
+
+
+# Searching enum elements via enum value
+It is possible to check if an enum element contains the desired key using the extension method
+```csharp
+public static bool ContainKey(this Enum obj, string key)
+```
+
+This is useful when you have enum elements containing a different number of attributes and you need to check if the enum element contains the required key.
+```csharp
+var isContain = TemplateUser.Claus.ContainKey(key);
+```
+
+It is also possible to get all elements of the enumeration containing the desired key:
+```csharp
+public static IEnumerable<T> FindByKey<T>(string key) where T : Enum
+
+var elements = SmartEnum.FindByKey<TemplateUser>(key);
+```
+
+And the ability to find all elements that contain the desired key with the desired value:
+```csharp
+public static IEnumerable<T> FindByValue<T, TK>(string key, TK value) where T: Enum
+
+var elements = SmartEnum.FindByValue<TamplateUser, Gender>("Gender", Gender.Male);
+```
 
 # Attribute versions
 You can add your versions for attributes using same attribute with `string version` parameter
