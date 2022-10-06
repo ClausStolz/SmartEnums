@@ -2,10 +2,12 @@
 namespace SmartEnums;
 
 /// <summary>
-/// Deprecated see 
-/// <see cref="SmartEnums.SearchingFlag"/>.
+/// Hold types to searching for
+/// <see cref="SmartEnums.EnumTagAttribute"/> using
+/// searching methods realized in
+/// <see cref="SmartEnum"/>.
 /// </summary>
-public enum TagSearchingFlag
+public enum SearchingFlag
 {
     /// <summary>
     /// Indicated to need to search elements where any

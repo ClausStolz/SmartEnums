@@ -54,4 +54,36 @@ public class EnumValueTests
         var deserialize = System.Text.Json.JsonSerializer.Deserialize<IEnumerable<object>>(value.GetJsonMetadata());
         if (deserialize != null) Assert.AreEqual(expectedResult, deserialize.Count());
     }
+
+    [Test]
+    [TestCase(EnumValue.Claus, "Gender", true)]
+    [TestCase(EnumValue.Claus, "Style", false)]
+    public void TestEnumValueContainKey(Enum obj, string key, bool expectedResult)
+    {
+        Assert.AreEqual(expectedResult, obj.ContainKey(key));
+    }
+    
+    [Test]
+    [TestCase("Gender", new[] { EnumValue.Claus, EnumValue.John, EnumValue.Elza})]
+    [TestCase("Style", null)]
+    public void TestEnumValueFindByKey(string key, EnumValue[] expectedResult)
+    {
+        var values = SmartEnum.FindByKey<EnumValue>(key);
+        foreach (var element in values)
+        {
+            Assert.True(expectedResult.Contains(element));
+        }
+    }
+    
+    [Test]
+    [TestCase("Gender", Gender.Male, new[] { EnumValue.Claus, EnumValue.John})]
+    [TestCase("Gender", Gender.Female, new[] {EnumValue.Elza})]
+    public void TestEnumValueFindByValue(string key, Gender value, EnumValue[] expectedResult)
+    {
+        var values = SmartEnum.FindByValue<EnumValue, Gender>(key, value);
+        foreach (var element in values)
+        {
+            Assert.True(expectedResult.Contains(element));
+        }
+    }
 }

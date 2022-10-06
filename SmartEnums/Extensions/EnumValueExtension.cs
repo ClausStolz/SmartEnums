@@ -62,6 +62,17 @@ public static partial class EnumValueExtension
             ? valuesOf!.FindVersion(key, version, obj)!.Value.TypeCasting<T>(key)
             : throw new ArgumentNullException(nameof(version));
     }
+
+    /// <summary>
+    /// Check enum element contain value with key.
+    /// </summary>
+    /// <param name="obj">Enumeration object.</param>
+    /// <param name="key">Key of custom field.</param>
+    public static bool ContainKey(this Enum obj, string key)
+    {
+        var valueAttributes = obj.GetEnumValueAttributes();
+        return valueAttributes?.Where(x => x?.Key == key).ToList().Count != 0;
+    }
     
     private static EnumValueAttribute FindVersion(this IEnumerable<EnumValueAttribute> valuesOf, 
         string key, string version, Enum obj)
